@@ -10,7 +10,7 @@ Splunk Processing Language (SPL) was used to query the suspected malicious event
 - SIEM: Splunk Enterprise
 - Virtualization: VirtualBox or VMWare
 - Operating System: Ubuntu
-- Log source: SSH Log dataset (ssh_log.json)[https://drive.google.com/drive/folders/1BL-kVlc3yCRcAH8NnDmAyRm_3j_2mNLM]
+- Log source: SSH Log dataset [ssh_log.json](https://drive.google.com/drive/folders/1BL-kVlc3yCRcAH8NnDmAyRm_3j_2mNLM)
 
 ## 3. Data Ingestion
 
@@ -42,7 +42,8 @@ index=ssh_logs event_type="Failed SSH Login"
 
 Events are narrowed down to only 305 showing the count of each IP that attempted to login but failed.
 
-To find the top 10 source IP genereting failed logins we will use;
+
+To find the top 10 source IP generating failed logins we will use;
 
 ```spl
 index=ssh_logs event_type="Failed SSH Login"| stats count by id.orig_h | sort - count | head 10
@@ -56,6 +57,10 @@ index=ssh_logs event_type="Failed SSH Login"| stats count by id.orig_h | sort - 
 
 The shows multiple failed login attempts from the top most source IPs with `10.0.0.30` being with the higest count (11) followed closely with the others with 9 - 10 counts. 
 This can indicate an automated brute-force attack or simply a user typing incorrect passwords.
+
+## 5. Detect SSH Brute Force Activity
+
+
 
 
 
