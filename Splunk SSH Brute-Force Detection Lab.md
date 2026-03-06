@@ -83,6 +83,34 @@ When this type of atack happens we will receive a notification under the activit
 
 <img width="800" height="634" alt="image" src="https://github.com/user-attachments/assets/807f28a0-72cf-4300-bad8-edb4bf3debbe" />
 
+## 6. Tracking Successful Logins
+
+Qeuery:
+
+```spl
+index=ssh_logs event_type="Successful SSH Login" | stats count by id.orig_h, id.resp_h
+```
+
+<img width="1849" height="819" alt="image" src="https://github.com/user-attachments/assets/13a10735-7202-4a13-94e6-bd7c420e2a91" />
+
+In this results we see the same IP `10.0.0.28` which had made multiple failed authentication attempts has successfully gained access.
+We can then save this to Dashboard for;
+
+ - Visibity of important data
+ - Reporting to the team and management
+ - Automation - dashboards update automatically as new information comes in
+ - Monitoring - for SOC analysts to quickly see suspicious activities
+
+To save to Dashboard
+
+ - Click save As and select New dashboard
+ - Add dashboard title name -> Select Dashboard studio -> Select dashboard layout
+ - Save to Dashboard _> view dashboard
+ - Options are available to download
+
+<img width="1845" height="458" alt="image" src="https://github.com/user-attachments/assets/41638548-f386-44d9-b4c7-fbe4b408220b" />
+
+## 7. Detect Suspicious SSH Connections
 
 
 
@@ -94,11 +122,6 @@ When this type of atack happens we will receive a notification under the activit
 
 
 
-
-
-
-
-- 
 
 
 
