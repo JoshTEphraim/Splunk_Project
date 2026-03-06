@@ -112,10 +112,39 @@ To save to Dashboard
 
 ## 7. Detect Suspicious SSH Connections
 
+Query:
 
+```spl
+index=ssh_logs event_type="Connection Without Authentication" | stats count by id.orig_h
+```
 
+<img width="1849" height="843" alt="image" src="https://github.com/user-attachments/assets/6db5c63b-b919-4283-819f-7aa3ea08625d" />
 
+Thia query shows the number of IPs that connected using SSH without authenticating, possibly by conduction network scans using tools such as `nmap` or using bots to scan for open ports.
 
+We can also use a `timchart` format that enables us to group evets by time
+
+Query:
+
+```spl
+index=ssh_logs event_type="Connection Without Authentication" | timechart count by id.orig_h
+```
+
+<img width="1852" height="407" alt="image" src="https://github.com/user-attachments/assets/6fa1c2ab-affb-4878-a874-a9cb4c082062" />
+
+## 9. Key Security Findings
+
+- Multiple failed SSH login attempts from specific source IPs
+- Repeated authentication attempts indicating brute-force activity
+- Unauthenticated SSH connections suggesting potential reconnaissance
+
+## 10. Skills Demonstrated
+
+- SIEM log ingestion
+- Splunk Search Processing Language (SPL)
+- Security event detection
+- Dashboard creation
+- Alert configuration
 
 
 
