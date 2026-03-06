@@ -60,6 +60,47 @@ This can indicate an automated brute-force attack or simply a user typing incorr
 
 ## 5. Detect SSH Brute Force Activity
 
+Query used:
+
+```spl
+index=ssh_logs event_type="Multiple Failed Authentication Attempts" | stats count by id.orig_h, id.resp_h
+```
+
+This query checks for failed attempts to authenticate from the source(`id.orig_h`) to the destination (`id.resp_h`)
+
+<img width="1847" height="822" alt="image" src="https://github.com/user-attachments/assets/c9ae30b3-94ac-44ce-9c46-024e303f9f8f" />
+
+Sorting it out using the count by ascending order we can see the IP `10.0.0.28` made 5 attempts to authenticate to the IP `10.0.1.1`.
+
+As Analyst we can therefore create a trigger alert to notify us when this type of event occurs.
+
+- Select Save As on the to right corner -> Alert
+- Enter title of alert based on your preferences
+- Select add actions and Add to triggered alerts
+- Save and exit
+
+When this type of atack happens we will receive a notification under the activity section
+
+<img width="800" height="634" alt="image" src="https://github.com/user-attachments/assets/807f28a0-72cf-4300-bad8-edb4bf3debbe" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 
+
+
 
 
 
